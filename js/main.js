@@ -1671,9 +1671,6 @@ function marketDetailPage(){
       <div class="p-2 mt-1 text-xs" style="font-family:monospace;line-height:1.8">
         <div>Authorization: Bearer <span class="api-key-placeholder">&lt;YOUR_API_KEY&gt;</span></div>
         <div>Content-Type: application/json</div>
-        <div class="mt-1 pt-1" style="border-top:1px dashed var(--border);font-family:sans-serif;color:var(--muted-foreground);line-height:1.6">
-          请将 <code>&lt;YOUR_API_KEY&gt;</code> 替换为你在「API Key 管理」中创建的密钥；<code>model</code> 参数需使用上方模型标识。
-        </div>
         ${isUser?`<div class="mt-2 pt-2" style="border-top:1px dashed var(--border)">
           <div class="flex items-center gap-2">
             <span class="text-xs font-semibold" style="color:var(--foreground)">选择 API Key：</span>
@@ -2286,9 +2283,6 @@ data: {"type":"message_stop"}`;
       <div>Authorization: <span style="color:var(--destructive)">*</span>Bearer <span class="api-key-placeholder">&lt;YOUR_API_KEY&gt;</span></div>
       <div>Content-Type: application/json</div>
       <div>X-MR-Async: true</div>
-      <div class="mt-1 pt-1" style="border-top:1px dashed var(--border);font-family:sans-serif;color:var(--muted-foreground);line-height:1.6">
-        请将 <code>&lt;YOUR_API_KEY&gt;</code> 替换为你在「API Key 管理」中创建的密钥；<code>model</code> 参数需使用上方模型标识。
-      </div>
       ${isUser?`<div class="mt-2 pt-2" style="border-top:1px dashed var(--border)">
         <div class="flex items-center gap-2">
           <span class="text-xs font-semibold" style="color:var(--foreground)">选择 API Key：</span>
@@ -2731,9 +2725,6 @@ data: {"type":"message_stop"}`;
     <div class="p-2 mt-1 text-xs" style="font-family:monospace;line-height:1.8">
       <div>Authorization: <span style="color:var(--destructive)">*</span>Bearer <span class="api-key-placeholder">&lt;YOUR_API_KEY&gt;</span></div>
       <div>Content-Type: application/json</div>
-      <div class="mt-1 pt-1" style="border-top:1px dashed var(--border);font-family:sans-serif;color:var(--muted-foreground);line-height:1.6">
-        请将 <code>&lt;YOUR_API_KEY&gt;</code> 替换为你在「API Key 管理」中创建的密钥；<code>model</code> 参数需使用上方模型标识。
-      </div>
       ${isUser?`<div class="mt-2 pt-2" style="border-top:1px dashed var(--border)">
         <div class="flex items-center gap-2">
           <span class="text-xs font-semibold" style="color:var(--foreground)">选择 API Key：</span>
@@ -2758,9 +2749,6 @@ data: {"type":"message_stop"}`;
       <div>Authorization: <span style="color:var(--destructive)">*</span>Bearer <span class="api-key-placeholder">&lt;YOUR_API_KEY&gt;</span></div>
       <div>Content-Type: application/json</div>
       <div>X-MR-Async: true</div>
-      <div class="mt-1 pt-1" style="border-top:1px dashed var(--border);font-family:sans-serif;color:var(--muted-foreground);line-height:1.6">
-        请将 <code>&lt;YOUR_API_KEY&gt;</code> 替换为你在「API Key 管理」中创建的密钥；<code>model</code> 参数需使用上方模型标识。
-      </div>
       ${isUser?`<div class="mt-2 pt-2" style="border-top:1px dashed var(--border)">
         <div class="flex items-center gap-2">
           <span class="text-xs font-semibold" style="color:var(--foreground)">选择 API Key：</span>
