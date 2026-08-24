@@ -5698,10 +5698,6 @@ function myTopup(){
       <select class="input" style="width:120px"><option>今天</option><option>近7天</option><option>近30天</option><option>自定义</option></select>
       <select class="input" style="width:100px"><option>全部状态</option><option>待处理</option><option>已完成</option><option>已拒绝</option></select>
       <input class="input" style="width:160px" placeholder="搜索工单号...">
-      <div class="ml-auto flex items-center gap-2">
-        <button class="btn btn-outline btn-sm" onclick="showContactDlg('invoice')">开票联系</button>
-        <button class="btn btn-outline btn-sm" onclick="showContactDlg('refund')">退款联系</button>
-      </div>
     </div>
     <table><thead><tr><th>工单号</th><th>流水号</th><th>金额(¥)</th><th>提交时间</th><th>状态</th><th>到账时间</th><th>备注</th></tr></thead>
     <tbody>${my.map(o=>`<tr ${o.status==='completed'?'style="background:#f0fdf4"':''}>
@@ -5852,6 +5848,10 @@ function myContact(){
     <div class="px-4 py-3 border-b flex items-center gap-2" style="border-color:var(--border)">
       <svg class="w-4 h-4" style="color:var(--primary)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
       <div class="text-sm font-semibold">联系工单</div>
+      <div class="ml-auto flex items-center gap-2">
+        <button class="btn btn-outline btn-sm" onclick="showContactDlg('invoice')">开票联系</button>
+        <button class="btn btn-outline btn-sm" onclick="showContactDlg('refund')">退款联系</button>
+      </div>
     </div>
     ${myContactReqs.length===0?`<div class="p-6 text-center text-xs" style="color:var(--muted-foreground)">暂无联系工单</div>`:
     `<table><thead><tr><th>工单号</th><th>类型</th><th>联系人</th><th>电话</th><th>提交时间</th><th>状态</th></tr></thead>
