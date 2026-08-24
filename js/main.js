@@ -5538,71 +5538,49 @@ function walletInfoTab(){
         <span style="line-height:1.6">${rechargeData.offWorkNote}</span>
       </div>
     </div>
-
-    <!-- 开票联系 -->
-    <div class="card p-4" style="border-left:3px solid var(--chart-2)">
-      <div class="flex items-center gap-2 mb-3">
-        <div class="w-7 h-7 rounded-lg flex items-center justify-center" style="background:color-mix(in srgb,var(--chart-2) 15%,transparent)">
-          <svg class="w-4 h-4" style="color:var(--chart-2)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-        </div>
-        <div class="text-sm font-semibold">开票联系</div>
-      </div>
-      <div class="rounded-lg p-3 mb-3 text-xs" style="background:color-mix(in srgb,var(--chart-2) 8%,transparent);color:var(--muted-foreground);line-height:1.6">
-        ${rechargeData.invoiceContactNote}
-      </div>
-      <div class="space-y-3">
-        <div>
-          <label class="text-xs font-medium block mb-1">联系人姓名</label>
-          <input id="inv-name" class="input w-full" placeholder="请输入您的姓名">
-        </div>
-        <div>
-          <label class="text-xs font-medium block mb-1">联系电话</label>
-          <input id="inv-phone" class="input w-full" placeholder="请输入您的手机号">
-        </div>
-        <div>
-          <label class="text-xs font-medium block mb-1">邮箱（选填）</label>
-          <input id="inv-email" class="input w-full" placeholder="请输入您的邮箱">
-        </div>
-        <div>
-          <label class="text-xs font-medium block mb-1">备注（选填）</label>
-          <textarea id="inv-note" class="input w-full" rows="2" placeholder="如有其他开票需求请说明"></textarea>
-        </div>
-      </div>
-      <button class="btn btn-primary w-full mt-3" onclick="submitContact('invoice')">
-        提交联系方式
-      </button>
-    </div>
-
-    <!-- 退款联系 -->
-    <div class="card p-4" style="border-left:3px solid var(--destructive)">
-      <div class="flex items-center gap-2 mb-3">
-        <div class="w-7 h-7 rounded-lg flex items-center justify-center" style="background:color-mix(in srgb,var(--destructive) 12%,transparent)">
-          <svg class="w-4 h-4" style="color:var(--destructive)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 15v-1a4 4 0 00-4-4H8m0 0l3 3m-3-3l3-3m9 14V9a2 2 0 00-2-2H6a2 2 0 00-2 2v9a2 2 0 002 2h12a2 2 0 002-2z"></path></svg>
-        </div>
-        <div class="text-sm font-semibold">退款联系</div>
-      </div>
-      <div class="rounded-lg p-3 mb-3 text-xs" style="background:color-mix(in srgb,var(--destructive) 8%,transparent);color:var(--muted-foreground);line-height:1.6">
-        ${rechargeData.refundContactNote}
-      </div>
-      <div class="space-y-3">
-        <div>
-          <label class="text-xs font-medium block mb-1">联系人姓名</label>
-          <input id="ref-name" class="input w-full" placeholder="请输入您的姓名">
-        </div>
-        <div>
-          <label class="text-xs font-medium block mb-1">联系电话</label>
-          <input id="ref-phone" class="input w-full" placeholder="请输入您的手机号">
-        </div>
-        <div>
-          <label class="text-xs font-medium block mb-1">退款原因（选填）</label>
-          <textarea id="ref-note" class="input w-full" rows="2" placeholder="请简要说明退款原因"></textarea>
-        </div>
-      </div>
-      <button class="btn btn-primary w-full mt-3" onclick="submitContact('refund')">
-        提交联系方式
-      </button>
-    </div>
   </div>`;
+}
+
+function showContactDlg(type){
+  const isInvoice = type==='invoice';
+  const title = isInvoice ? '开票联系' : '退款联系';
+  const note = isInvoice ? rechargeData.invoiceContactNote : rechargeData.refundContactNote;
+  const accent = isInvoice ? 'var(--chart-2)' : 'var(--destructive)';
+  const prefix = isInvoice ? 'inv' : 'ref';
+  showModal(`<div class="p-5" style="max-width:480px">
+    <h3 class="text-base font-semibold mb-1">${title}</h3>
+    <div class="rounded-lg p-2 mb-4 text-xs" style="background:color-mix(in srgb,${accent} 8%,transparent);color:var(--muted-foreground);line-height:1.6">
+      ${note}
+      <div class="mt-1" style="color:${accent};font-weight:600">承诺联系时限：${rechargeData.contactDays}个工作日</div>
+    </div>
+    <div class="space-y-3">
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="text-xs font-medium block mb-1">联系人姓名 <span style="color:var(--destructive)">*</span></label>
+          <input id="${prefix}-name" class="input w-full" placeholder="请输入您的姓名">
+        </div>
+        <div>
+          <label class="text-xs font-medium block mb-1">联系电话 <span style="color:var(--destructive)">*</span></label>
+          <input id="${prefix}-phone" class="input w-full" placeholder="请输入您的手机号">
+        </div>
+      </div>
+      ${isInvoice ? `<div>
+        <label class="text-xs font-medium block mb-1">邮箱（选填）</label>
+        <input id="${prefix}-email" class="input w-full" placeholder="请输入您的邮箱">
+      </div>
+      <div>
+        <label class="text-xs font-medium block mb-1">备注（选填）</label>
+        <textarea id="${prefix}-note" class="input w-full" rows="2" placeholder="如有其他开票需求请说明"></textarea>
+      </div>` : `<div>
+        <label class="text-xs font-medium block mb-1">退款原因（选填）</label>
+        <textarea id="${prefix}-note" class="input w-full" rows="2" placeholder="请简要说明退款原因"></textarea>
+      </div>`}
+    </div>
+    <div class="flex justify-end gap-2 mt-4">
+      <button class="btn btn-outline btn-sm" onclick="closeModal()">取消</button>
+      <button class="btn btn-primary btn-sm" onclick="submitContact('${type}')">提交联系方式</button>
+    </div>
+  </div>`);
 }
 
 function submitContact(type){
@@ -5720,6 +5698,10 @@ function myTopup(){
       <select class="input" style="width:120px"><option>今天</option><option>近7天</option><option>近30天</option><option>自定义</option></select>
       <select class="input" style="width:100px"><option>全部状态</option><option>待处理</option><option>已完成</option><option>已拒绝</option></select>
       <input class="input" style="width:160px" placeholder="搜索工单号...">
+      <div class="ml-auto flex items-center gap-2">
+        <button class="btn btn-outline btn-sm" onclick="showContactDlg('invoice')">开票联系</button>
+        <button class="btn btn-outline btn-sm" onclick="showContactDlg('refund')">退款联系</button>
+      </div>
     </div>
     <table><thead><tr><th>工单号</th><th>流水号</th><th>金额(¥)</th><th>提交时间</th><th>状态</th><th>到账时间</th><th>备注</th></tr></thead>
     <tbody>${my.map(o=>`<tr ${o.status==='completed'?'style="background:#f0fdf4"':''}>
